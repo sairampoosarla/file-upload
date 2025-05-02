@@ -1,12 +1,14 @@
-const product = require("../models/Product")
-const {StatusCode} = require("http-status-codes")
+const Product = require("../models/Product")
+const {StatusCodes} = require("http-status-codes")
 
 const createProduct = async (req, res) => {
-    res.send("Product Created")
+    console.log(req.body)
+    const product = await Product.create(req.body)
+    res.status(StatusCodes.CREATED).json(product)
 }
 
 const getAllProducts = async (req, res) =>{
-    res.sed("List of all products")
+    res.send("List of all products")
 }
 
-model.exports = {createProduct, getAllProducts}
+module.exports = {createProduct, getAllProducts}
